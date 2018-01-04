@@ -1,0 +1,28 @@
+* Test of Org mode
+
+** Some formula: $f(x) = x^3$
+  
+   Test
+
+   
+DONE Upload 10 days of stats
+TODO Review story
+TODO Realease story
+
+
+   | laha              | fsdf        |
+   |-------------------+-------------|
+   | Vim               | 2           |
+   | ema               | 3           |
+   | Ide               | 1           |
+   | Eclipse           | 4           |
+   | fsd               | fsad        |
+   | fsdaf             | fasdfa      |
+   | fsadf             | fasdfa      |
+   | fasdfasd          | fasdfasd    |
+   | fasdfsd           | dsfaasd     |
+   | adsjfklasdfjlasdf | fasldfj;asd |
+   | fasldfjasdf       | fsda;fjasdf |
+   |                   |             |
+
+
