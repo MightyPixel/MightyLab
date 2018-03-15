@@ -1,0 +1,1 @@
+# Analysis## Data```mkdir data/wget http://alaska.epfl.ch/~dockermoocs/bigdata/wikipedia.dat data/```## Instructions- Wikipedia	- `spark-shell --master local[*] -i wikipedia.scala`
