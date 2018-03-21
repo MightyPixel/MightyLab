@@ -1,7 +1,6 @@
 import annotation.tailrec
 import scala.reflect.ClassTag
 
-
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
@@ -19,10 +18,7 @@ object StackOverflowAnalysis extends Serializable {
   /** A raw stackoverflow posting, either a question or an answer */
   case class Posting(postingType: Int, id: Int, acceptedAnswer: Option[Int], parentId: Option[QID], score: Int, tags: Option[String]) extends Serializable
 
-  /** The parsing and kmeans methods */
   class StackOverflow extends Serializable {
-
-    /** Languages */
     val langs = List("JavaScript", "Java", "PHP", "Python", "C#", "C++", "Ruby", "CSS",
                      "Objective-C", "Perl", "Scala", "Haskell", "MATLAB", "Clojure", "Groovy")
 
@@ -39,12 +35,6 @@ object StackOverflowAnalysis extends Serializable {
     /** K-means parameter: Maximum iterations */
     def kmeansMaxIterations = 120
 
-
-    //
-    //
-    // Parsing utilities:
-    //
-    //
 
     /** Load postings from the given file */
     def rawPostings(lines: RDD[String]): RDD[Posting] =
@@ -75,7 +65,6 @@ object StackOverflowAnalysis extends Serializable {
                           (maxScoreQA._1, maxScore)
                         }).values
     }
-
 
     /** Compute the vectors for the kmeans */
     def vectorPostings(scored: RDD[(Question, HighScore)]): RDD[(LangIndex, HighScore)] = {
@@ -144,13 +133,6 @@ object StackOverflowAnalysis extends Serializable {
       res
     }
 
-
-    //
-    //
-    //  Kmeans method:
-    //
-    //
-
     /** Main kmeans computation */
     @tailrec final def kmeans(means: Array[(Int, Int)], vectors: RDD[(Int, Int)], iter: Int = 1, debug: Boolean = false): Array[(Int, Int)] = {
       val newMeans = means.clone()
@@ -183,15 +165,6 @@ object StackOverflowAnalysis extends Serializable {
         newMeans
       }
     }
-
-
-
-
-    //
-    //
-    //  Kmeans utilities:
-    //
-    //
 
     /** Decide whether the kmeans clustering converged */
     def converged(distance: Double) =
@@ -248,13 +221,7 @@ object StackOverflowAnalysis extends Serializable {
     }
 
 
-
-
-    //
-    //
-    //  Displaying results:
-    //
-    //
+    /** Display results **/
     def clusterResults(means: Array[(Int, Int)], vectors: RDD[(LangIndex, HighScore)]): Array[(String, Double, Int, Int)] = {
       def getMedian(xs: List[Int]): Int = {
         if (xs.size % 2 == 0) {
